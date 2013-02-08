@@ -36,7 +36,7 @@ runSql query = do
 #endif
 
 readPosts :: IO [Post]
-readPosts = map entityVal <$> (runSql $ selectList [] [Desc PostId])
+readPosts = map entityVal <$> (runSql $ selectList [] [Desc PostId, LimitTo 50])
 
 addPost :: Post -> IO ()
 addPost post = runSql $ insert post >> return ()
