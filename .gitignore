@@ -1,0 +1,36 @@
+### OSX.gitignore
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+### Linux.gitignore
+
+.*
+!.gitignore
+*~
+
+
+### Haskell.gitignore
+
+dist
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+.virthualenv
+
+### SQLite
+
+*.sqlite3
