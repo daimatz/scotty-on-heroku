@@ -21,11 +21,11 @@ executable scotty-on-heroku
                      , bytestring
                      , heroku
                      , old-locale
-                     , persistent                  < 1.1
+                     , persistent                  <  1.1
                      , persistent-postgresql
                      , persistent-sqlite
                      , persistent-template
-                     , scotty
+                     , scotty                      >= 0.4.6
                      , text
                      , time
                      , transformers
