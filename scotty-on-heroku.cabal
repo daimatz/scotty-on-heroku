@@ -18,9 +18,11 @@ executable heroku-haskell
   -- other-modules:
   extensions:        OverloadedStrings
   build-depends:       base ==4.5.*
-                     , persistent
+                     , old-locale
+                     , persistent                  < 1.1
                      , persistent-sqlite
                      , persistent-template
                      , scotty
                      , text
                      , time
+                     , transformers

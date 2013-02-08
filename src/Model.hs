@@ -15,7 +15,7 @@ import Database.Persist.TH
 share [mkPersist sqlSettings, mkMigrate "migrate"] [persist|
 Post
     name    Text
-    contet  Text
+    text    Text
     created UTCTime
   deriving Show Read Eq Ord
 |]
