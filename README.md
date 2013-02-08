@@ -1,10 +1,10 @@
 Scotty on Heroku
 ====
 
-<http://scotty-on-heroku.herokuapp.com/>.
+<http://scotty-on-heroku.herokuapp.com/>
 
-Example of launching scotty application on Heroku.
-You can see running application on the URL above.
+A simple example of Scotty application on Heroku.
+You can see the running application on the URL above.
 
 Installation
 ----
@@ -39,7 +39,7 @@ BUILDPACK_URL:                https://github.com/pufuwozu/heroku-buildpack-haske
 HEROKU_POSTGRESQL_ORANGE_URL: postgres://uuuuu:xxxxx@yyyyy.amazonaws.com/zzzzz
 ```
 
-Set the database to primary db:
+Set the db to primary:
 
 ```bash
 $ heroku pg:promote HEROKU_POSTGRESQL_ORANGE_URL
@@ -70,8 +70,8 @@ $ heroku open
 Running on Other Environment
 ----
 
-Of cource you can run the application on localhost.
-But you have to set `PORT` and `DATABASE_URL` correctory.
+Of cource you can run this application on localhost.
+But you have to set `PORT` and `DATABASE_URL` manually.
 
 ```bash
 $ cabal-dev update
@@ -82,9 +82,10 @@ $ PORT=3000 DATABASE_URL=postgres://uuuuu:xxxxx@yyyyy.amazonaws.com/zzzzz \
       dist/build/scotty-on-heroku/scotty-on-heroku
 ```
 
-### Use SQLite
+### Using SQLite
 
-You can use SQLite database instead of PostgreSQL for local development.
+You can use SQLite database instead of PostgreSQL for local development
+(and in this case you don't have to set `DATABASE_URL`).
 Uncomment `#define SQLite` in `src/DBUtil.hs`:
 
 ```haskell
@@ -92,6 +93,12 @@ Uncomment `#define SQLite` in `src/DBUtil.hs`:
 #define SQLite
 ```
 
-If you didn't install PostgreSQL to the machine,
-you also have to comment out `persistent-postgresql` dependencies in
+If you didn't install PostgreSQL to your machine,
+you also have to comment out `persistent-postgresql` dependency in
 `scotty-on-heroku.cabal`.
+
+```haskell
+                     , persistent                  <  1.1
+--                     , persistent-postgresql
+                     , persistent-sqlite
+```
