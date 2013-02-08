@@ -12,7 +12,7 @@ category:            Web
 build-type:          Simple
 cabal-version:       >=1.8
 
-executable heroku-haskell
+executable scotty-on-heroku
   hs-source-dirs:      src
   main-is:             Main.hs
   -- other-modules:
@@ -20,6 +20,7 @@ executable heroku-haskell
   build-depends:       base ==4.5.*
                      , old-locale
                      , persistent                  < 1.1
+                     , persistent-postgresql
                      , persistent-sqlite
                      , persistent-template
                      , scotty
