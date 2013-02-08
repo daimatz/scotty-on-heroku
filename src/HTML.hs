@@ -6,6 +6,7 @@ import qualified Data.Text as T
 import qualified Data.Text.Lazy as TL
 import Data.Time (formatTime)
 import System.Locale (defaultTimeLocale)
+import Text.HTML.TagSoup (escapeHTML)
 
 import Model
 
@@ -20,9 +21,9 @@ postsHTML :: [Post] -> Text
 postsHTML posts
     = let lists = TL.fromStrict $ mconcat $ flip map posts $ \post ->
                        "<li>"
-                    <> postName post
+                    <> escapeHTML (postName post)
                     <> " | "
-                    <> postText post
+                    <> escapeHTML (postText post)
                     <> " | "
                     <> T.pack (formatTime defaultTimeLocale "%F %T" $ postCreated post)
                     <> "</li>"
