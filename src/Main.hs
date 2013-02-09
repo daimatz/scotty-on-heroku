@@ -8,7 +8,7 @@ import Data.Time (getCurrentTime)
 import qualified Data.Text.Lazy as TL
 import Database.Persist.GenericSql (runMigration)
 import System.Environment (getEnv)
-import Web.Scotty
+import Web.Scotty hiding (body)
 
 import HTML
 import DBUtil
@@ -21,7 +21,7 @@ main = do
         get "/" $ do
             form <- formHTML
             posts <- join $ postsHTML <$> liftIO readPosts
-            html $ form <> posts
+            body $ form <> posts
 
         post "/" $ do
             name <- param "name"
