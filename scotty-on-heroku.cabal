@@ -27,7 +27,6 @@ executable scotty-on-heroku
                      , persistent-sqlite
                      , persistent-template
                      , scotty                      >= 0.4.6
-                     , tagsoup
                      , text
                      , time
                      , transformers
