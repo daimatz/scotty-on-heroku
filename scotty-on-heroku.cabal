@@ -16,6 +16,7 @@ executable scotty-on-heroku
   hs-source-dirs:      src
   main-is:             Main.hs
   -- other-modules:
+  ghc-options:       -Wall -O2
   extensions:        OverloadedStrings
   build-depends:       base ==4.5.*
                      , bytestring

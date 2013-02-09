@@ -14,6 +14,7 @@ import HTML
 import DBUtil
 import Model
 
+main :: IO ()
 main = do
     runSql $ runMigration migrate
     port <- read <$> getEnv "PORT"
@@ -24,8 +25,8 @@ main = do
             body $ form <> posts
 
         post "/" $ do
-            name <- param "name"
-            text <- param "text"
+            pn <- param "name"
+            pt <- param "text"
             now <- liftIO getCurrentTime
-            liftIO $ addPost $ Post (TL.toStrict name) (TL.toStrict text) now
+            liftIO $ addPost $ Post (TL.toStrict pn) (TL.toStrict pt) now
             redirect "/"

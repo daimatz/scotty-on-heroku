@@ -16,7 +16,6 @@ import           Text.Hastache
 import           Text.Hastache.Context
 import           Web.Scotty              (html, ActionM)
 
-import DBUtil
 import Model
 
 mustache :: MonadIO m => FilePath -> (String -> MuType m) -> m Text
@@ -39,6 +38,7 @@ postsHTML posts = do
     context post "text" = MuVariable $ postText post
     context post "date" = MuVariable
         $ T.pack $ formatTime defaultTimeLocale "%F %T" $ postCreated post
+    context _    _      = MuVariable $ ("error" :: T.Text)
 
 body :: Text -> ActionM ()
 body text = do
