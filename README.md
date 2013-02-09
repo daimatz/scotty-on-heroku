@@ -14,7 +14,7 @@ Installation
 Clone this repository:
 
 ```bash
-$ git clone git@github.com:daimatz/scotty-on-heroku.git
+$ git clone git://github.com/daimatz/scotty-on-heroku.git
 $ cd scotty-on-heroku
 ```
 
