@@ -33,7 +33,7 @@ postsHTML :: [Post] -> ActionM Text
 postsHTML posts = do
     htmls <- forM posts $ \post ->
         liftIO $ mustache "view/post.mustache" (context post)
-    return $ mconcat htmls
+    return $ "<ul>" <> mconcat htmls <> "</ul>"
   where
     context post "name" = MuVariable $ postName post
     context post "text" = MuVariable $ postText post
@@ -44,4 +44,4 @@ body :: Text -> ActionM ()
 body text = do
     h <- liftIO $ mustache "view/head.mustache" nullContext
     f <- liftIO $ mustache "view/foot.mustache" nullContext
-    html$ h <> text <> f
+    html $ h <> text <> f
