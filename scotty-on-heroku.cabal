@@ -19,6 +19,7 @@ executable scotty-on-heroku
   extensions:        OverloadedStrings
   build-depends:       base ==4.5.*
                      , bytestring
+                     , hastache
                      , heroku
                      , old-locale
                      , persistent                  <  1.1

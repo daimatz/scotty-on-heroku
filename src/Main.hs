@@ -1,19 +1,17 @@
 module Main where
 
 import Control.Applicative ((<$>))
+import Control.Monad (join)
 import Control.Monad.IO.Class (liftIO)
-import Data.Monoid ((<>), mconcat)
-import Data.Text.Lazy (Text)
-import Data.Text.Lazy.Encoding (decodeUtf8)
-import Data.Time (getCurrentTime, UTCTime)
-import qualified Data.Text as T
+import Data.Monoid ((<>))
+import Data.Time (getCurrentTime)
 import qualified Data.Text.Lazy as TL
 import Database.Persist.GenericSql (runMigration)
 import System.Environment (getEnv)
 import Web.Scotty
 
-import DBUtil
 import HTML
+import DBUtil
 import Model
 
 main = do
@@ -21,8 +19,9 @@ main = do
     port <- read <$> getEnv "PORT"
     scotty port $ do
         get "/" $ do
-            posts <- liftIO readPosts
-            html $ formHTML <> postsHTML posts
+            form <- formHTML
+            posts <- join $ postsHTML <$> liftIO readPosts
+            html $ form <> posts
 
         post "/" $ do
             name <- param "name"
