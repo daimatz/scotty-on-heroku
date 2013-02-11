@@ -2,17 +2,17 @@
 
 module DBUtil where
 
-import Control.Applicative ((<$>))
-import Database.Persist (insert, selectList, entityVal, SelectOpt(..))
-import Database.Persist.GenericSql (SqlPersist(..), runSqlConn)
+import           Control.Applicative         ((<$>))
+import           Database.Persist
+import           Database.Persist.GenericSql
 
-import Model
+import           Model
 
 -- #define SQLite
 
 #ifdef SQLite
 
-import Database.Persist.Sqlite (withSqliteConn)
+import           Database.Persist.Sqlite     (withSqliteConn)
 
 runSql :: SqlPersist IO a -> IO a
 runSql = withSqliteConn dbfile . runSqlConn
@@ -21,16 +21,17 @@ runSql = withSqliteConn dbfile . runSqlConn
 
 #else
 
-import Data.Monoid ((<>))
-import Data.Text.Encoding (encodeUtf8)
-import Database.Persist.Postgresql (withPostgresqlConn)
-import Database.Persist.Store (loadConfig, applyEnv)
-import Web.Heroku (dbConnParams)
+import           Data.Monoid                 ((<>))
+import           Data.Text.Encoding          (encodeUtf8)
+import           Database.Persist.Postgresql (withPostgresqlConn)
+import           Database.Persist.Store      (applyEnv, loadConfig)
+import           Web.Heroku                  (dbConnParams)
 
 runSql :: SqlPersist IO a -> IO a
 runSql query = do
     params <- dbConnParams
-    let connStr = foldr (\(k,v) t -> t <> (encodeUtf8 $ k <> "=" <> v <> " ")) "" params
+    let connStr = foldr (\(k,v) t -> t <> (encodeUtf8 $ k <> "=" <> v <> " "))
+                  "" params
     withPostgresqlConn connStr $ runSqlConn query
 
 #endif

@@ -6,7 +6,7 @@ module HTML
     , body
     ) where
 
-import           Control.Monad.IO.Class  (liftIO, MonadIO)
+import           Control.Monad.IO.Class  (MonadIO, liftIO)
 import           Data.Monoid             ((<>))
 import qualified Data.Text               as T
 import           Data.Text.Lazy          (Text)
@@ -15,9 +15,9 @@ import           Data.Time               (formatTime)
 import           System.Locale           (defaultTimeLocale)
 import           Text.Hastache
 import           Text.Hastache.Context
-import           Web.Scotty              (html, ActionM)
+import           Web.Scotty              (ActionM, html)
 
-import Model
+import           Model
 
 mustache :: MonadIO m => FilePath -> MuContext m -> m Text
 mustache path context = return . decodeUtf8

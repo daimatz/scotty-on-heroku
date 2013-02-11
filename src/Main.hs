@@ -1,18 +1,18 @@
 module Main where
 
-import Control.Applicative ((<$>))
-import Control.Monad (join)
-import Control.Monad.IO.Class (liftIO)
-import Data.Monoid ((<>))
-import Data.Time (getCurrentTime)
-import qualified Data.Text.Lazy as TL
-import Database.Persist.GenericSql (runMigration)
-import System.Environment (getEnv)
-import Web.Scotty hiding (body)
+import           Control.Applicative         ((<$>))
+import           Control.Monad               (join)
+import           Control.Monad.IO.Class      (liftIO)
+import           Data.Monoid                 ((<>))
+import qualified Data.Text.Lazy              as TL
+import           Data.Time                   (getCurrentTime)
+import           Database.Persist.GenericSql (runMigration)
+import           System.Environment          (getEnv)
+import           Web.Scotty                  hiding (body)
 
-import HTML
-import DBUtil
-import Model
+import           DBUtil
+import           HTML
+import           Model
 
 main :: IO ()
 main = do
