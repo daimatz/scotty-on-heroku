@@ -24,7 +24,6 @@ runSql = withSqliteConn dbfile . runSqlConn
 import           Data.Monoid                 ((<>))
 import           Data.Text.Encoding          (encodeUtf8)
 import           Database.Persist.Postgresql (withPostgresqlConn)
-import           Database.Persist.Store      (applyEnv, loadConfig)
 import           Web.Heroku                  (dbConnParams)
 
 runSql :: SqlPersist IO a -> IO a
